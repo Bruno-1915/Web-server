@@ -1,9 +1,9 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:228494190642:task-definition/web-server:4",
+    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:228494190642:task-definition/web-server:6",
     "containerDefinitions": [
         {
             "name": "images",
-            "image": "228494190642.dkr.ecr.ap-northeast-1.amazonaws.com/images:cccc98ceac4469b1376b7ae855f24ea8609e536f",
+            "image": "228494190642.dkr.ecr.ap-northeast-1.amazonaws.com/images:4d0dfee5c8cc07dcecb572840b833fc0381372c3",
             "cpu": 0,
             "portMappings": [
                 {
@@ -23,7 +23,7 @@
     "family": "web-server",
     "executionRoleArn": "arn:aws:iam::228494190642:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 4,
+    "revision": 6,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -54,7 +54,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2023-07-28T16:02:03.055Z",
+    "registeredAt": "2023-07-28T16:23:58.604Z",
     "registeredBy": "arn:aws:iam::228494190642:root",
     "tags": []
 }
