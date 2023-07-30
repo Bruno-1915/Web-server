@@ -33,8 +33,8 @@ on:
 env:
   AWS_REGION: ap-northeast-1                  # set this to your preferred AWS region, e.g. us-west-1
   ECR_REPOSITORY: images                      # set this to your Amazon ECR repository name
-  ECS_SERVICE: web-server.                    # set this to your Amazon ECS service name
-  ECS_CLUSTER: webServer.                    # set this to your Amazon ECS cluster name
+  ECS_SERVICE: web-server                     # set this to your Amazon ECS service name
+  ECS_CLUSTER: webServer                      # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: task-definition.json   # set this to the path to your Amazon ECS task definition
                                               # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: images                      # set this to the name of the container in the
