@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}My Blog{% endblock %}
+
+{% block heading %}Simple Blog - Blog Page{% endblock %}
+
+{% block content %}
+    <!-- <h2>Total Number of Posts: {{ posts|length }}</h2> -->
+
+    {% for post in posts %}
+        <div class="post">
+
+            {% if post.status == 'published' %}
+                <h2>{{ post.author }}</h2>
+                <h3>{{ post.title }}</h3>
+                <!-- <p>{{ post.content|truncate }}</p> -->
+                {% for content in post.content %}
+                    <p>{{ content|truncate }}</p>
+                    
+
+                {% endfor %}
+                <a href="{{post.link_model}}" target="_blank">"Link to model"</a>
+                <p>Published on: {{ post.publication_date }}</p>
+
+                <!-- <h4>Comments:</h4> -->
+                <!-- <ul>
+                    {% for comment in post.comments %}
+                        <li class="comment">{{ comment.author }}-: {{ comment.content }}</li>
+                        
+
+                    {% endfor %} -->
+                </ul>
+            {% else %}
+                <p>This post is still in draft mode.</p>
+            {% endif %}
+            
+            <input type="file" id="fileInput" accept="image/*" onchange="previewFile()"><br>
+            <input type="button" value="Predict Image" onclick="uploadFile()">
+            <p id="serverMsg"></p>
+            <img height="200">
+            <hr>
+        </div>
+    {% endfor %}
+
+    <script type="text/javascript">
+        function previewFile() {
+            const preview = document.querySelector('img');
+            var file = document.getElementById('fileInput').files[0];
+            const reader = new FileReader();
+            reader.addEventListener("load", function() {
+                preview.src = reader.result; // show image in <img> tag
+            }, false);
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+            document.getElementById('fileInput').name = ' '
+        }
+    
+        function uploadFile(file) {
+            var file = document.getElementById('fileInput').files[0];
+            if (file) {
+                var formData = new FormData();
+                formData.append('file', file);
+                fetch('/uploadfile', {
+                        method: 'POST',
+                        body: formData,
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById("serverMsg").innerHTML = data.message;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
+        }
+    </script>
+{% endblock %}
